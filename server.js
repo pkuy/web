@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const exhbs = require("express-handlebars");
+const methodOverride = require('method-override');
 
 
 // import cookie-parse
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+app.use(methodOverride('_method'))
 
 
 // import dotenv - bien moi truong
@@ -38,9 +40,11 @@ app.set('views', './views');
 // kiểm tra user
 app.use('/', require("./controllers/Site/home.C"))
     // route cho dangnhap, dangki
-app.use('/dangnhap', checkUserIsLogin, require("./controllers/Auth/logIn.C"));
+//app.use('/dangnhap', checkUserIsLogin, require("./controllers/Auth/logIn.C"));
+app.use('/dangnhap', require("./controllers/Auth/logIn.C"));
+
 app.use('/dangki', require("./controllers/Auth/logUp.C"));
-app.use('*', authenToken);
+//app.use('*', authenToken);
 
 // router danh cho homepage
 app.use('/', require("./controllers/Site/home.C"));
@@ -60,9 +64,9 @@ app.use('/bitis', require("./controllers/BrandPage/bitis.C"));
 app.use('/dangxuat', require("./controllers/Auth/logOut.C"));
 
 // route cho gio hang
-app.use('/giohang', require("./controllers/cart.C"))
+app.use('/cart', require("./controllers/Cart/cart.C"))
 
-app.use('/order', require("./controllers/order.C"))
+app.use('/order', require("./controllers/Order/order.C"))
 
 app.listen(port, () => {
     console.log(`Listen in port http://localhost:${port}`);

@@ -10,17 +10,17 @@ exports.getCartId = async(u_id) => {
     return c_id.rows[0].cart_id;
 };
 
+exports.priceForShow = function(price) {
+    price = parseInt(price);
+    return String(price).replace(/(.)(?=(\d{3})+$)/g,'$1,');
+}
+
 exports.getCartContent = async(c_id) => {
     const contents = (await db.query(`select *
     from cart_content cc inner join shoes s
     on cc.shoes_id = s.shoes_id
     where cart_id = ${c_id}`)).rows;
-
-    for (let content of contents) {
-        content.price = parseInt(content.price);
-        content.price = String(content.price).replace(/(.)(?=(\d{3})+$)/g,'$1,');
-    }
-
+    
     return contents;
 };
 
@@ -29,8 +29,6 @@ exports.getCrrCartPrice = async(c_id) => {
     from cart_content cc inner join shoes s
     on cc.shoes_id = s.shoes_id
     where cart_id = ${c_id};`)).rows[0].price;
-    sumPrice = parseInt(sumPrice);
-    sumPrice = String(sumPrice).replace(/(.)(?=(\d{3})+$)/g,'$1,');
     return sumPrice;
 };
 
@@ -58,8 +56,7 @@ exports.addToCart = async(c_id, s_id, quantity) => {
         let newRow = await db.query(`insert into cart_content ("cart_id", "shoes_id", "cart_quantity")
         values (${c_id}, ${s_id}, ${quantity}) returning *;`);
 
-        return newRow.rows[0];
-        
+        return newRow.rows[0];  
     }
 
     // Nếu rồi, cấp nhật số lượng trong giỏ hàng
@@ -77,7 +74,7 @@ exports.addToCart = async(c_id, s_id, quantity) => {
     */
 
     // Update số lượng mới vào giỏ hàng
-    let newInCart = testRow.rows[0].cart_quantity + quantity;
+    let newInCart = parseInt(testRow.rows[0].cart_quantity) + parseInt(quantity);
     let updatedRow = await db.query(`update cart_content set cart_quantity = ${newInCart}
     where cart_id = ${c_id} and shoes_id = ${s_id} returning *;`);
 
@@ -102,12 +99,6 @@ exports.removeOneFromCart = async(c_id, s_id) => {
 
 exports.removeAllFromCart = async(c_id) => {
     let deletedRows = (await db.query(`select * from cart_content where cart_id = ${c_id};`)).rows;
-
-    /*
-    // Xóa từng giày trong giỏ
-    for (let item of deletedRows) {
-        await this.removeOneFromCart(item.cart_id, item.shoes_id);
-    }*/
 
     // Xóa mọi giày trong giỏ
     await db.query(`delete from cart_content where cart_id = ${c_id};`)

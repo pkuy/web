@@ -117,7 +117,6 @@ router.post("/", async(req, res) => {
         //lưu vào database table user
         const newUser = await addOne(uservalue, fullnamevalue, phonevalue, pwdHashed);
 
-
         // // lưu vào trong database table carts
         const newCart = await addOneCarts(newUser[0].user_id);
 

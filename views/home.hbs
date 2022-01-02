@@ -42,9 +42,10 @@
             </div>
 
             <div class="product__buy btn">
-                <form>
-                <button>Thêm vào giỏ hàng</button>
-                </form>
+                <button type="button" data-toggle="modal" data-target="#addToCartModal"
+                    data-s_id={{this.shoes_id}} data-name="{{this.shoes_name}}" data-size={{this.size}}>
+                    Thêm vào giỏ hàng
+                </button>
             </div>
             
             <div class="product__stock">Còn {{this.stock}} sản phẩm </div>
@@ -81,9 +82,10 @@
 
 
             <div class="product__buy btn">
-                <form>
-                <button>Thêm vào giỏ hàng</button>
-                </form>
+                <button type="button" data-toggle="modal" data-target="#addToCartModal"
+                    data-s_id={{this.shoes_id}} data-name="{{this.shoes_name}}" data-size={{this.size}}>
+                    Thêm vào giỏ hàng
+                </button>
             </div>
 
             <div class="product__stock">Còn {{this.stock}} sản phẩm </div>
@@ -119,9 +121,10 @@
             </div>
 
             <div class="product__buy btn">
-                <form>
-                <button>Thêm vào giỏ hàng</button>
-                </form>
+                <button type="button" data-toggle="modal" data-target="#addToCartModal"
+                    data-s_id={{this.shoes_id}} data-name="{{this.shoes_name}}" data-size={{this.size}}>
+                    Thêm vào giỏ hàng
+                </button>
             </div>
 
             <div class="product__stock">Còn {{this.stock}} sản phẩm </div>
@@ -142,3 +145,85 @@
     </div>
 </section>
 
+<!-- Add to cart modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="addToCartModalHead" class="modal-title" style="font-size: 20px;">Thêm vào giỏ hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="addToCartModalMsg">
+          Bạn có chắc chắn muốn thêm giày ... vào giỏ hàng?
+        </div>
+        <br>
+        <div>
+          Nếu muốn, nhập số lượng cần thêm:
+        </div>
+        <br>
+        <form name="addToCartForm" method="post" action="/cart">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Số lượng</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" require style="font-size: 15px;" name="quantity" value="-1">
+            </div>
+          </div>
+        </form>
+        <div  id="formBack" role="alert">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btnaddToCart" type="button" class="btn btn-success" style="font-size: 15px">Xác nhận</button>
+        <button type="button" class="btn btn-secondary" style="font-size: 15px" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    var s_id;
+    var s_name;
+    var s_size;
+    var btnAdd = document.getElementById("btnaddToCart");
+    var addToCartForm = document.forms['addToCartForm'];
+
+    // Khi modal hiện lên
+    $('#addToCartModal').on('show.bs.modal', function (event) {
+      var passBtn = $(event.relatedTarget);
+
+      s_id = passBtn.data('s_id');
+      s_name = passBtn.data('name');
+      s_size = passBtn.data('size');
+      $('#addToCartModalMsg').text(`Bạn có chắc chắn muốn thêm ${s_name}, size ${s_size} vào giỏ hàng?`);
+    });
+
+    // Khi click vào xác nhận thêm sản phẩm
+    btnAdd.onclick = function () {
+      let test_quantity = addToCartForm.quantity.value;
+      if (!test_quantity) {
+          document.getElementById("formBack").setAttribute('class', "alert alert-danger");
+          $('#formBack').text("Vui lòng nhập số lượng.");
+          return;
+      }
+      if (test_quantity != parseInt(test_quantity)) {
+          document.getElementById("formBack").setAttribute('class', "alert alert-danger");
+          $('#formBack').text("Vui lòng nhập số lượng là số nguyên.");
+          return;
+      }
+      if (test_quantity <= 0) {
+          document.getElementById("formBack").setAttribute('class', "alert alert-danger");
+          $('#formBack').text("Vui lòng nhập số lượng > 0.");
+          return;
+      }
+
+      addToCartForm.action = '/cart/' + s_id;
+      return addToCartForm.submit();
+    };
+  });
+</script>

@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllNike } = require("../../models/user/nike");
+const { getAllNike, priceForShow } = require("../../models/user/nike");
 const router = express.Router();
 
 router.get("/", async(req, res) => {
@@ -22,6 +22,11 @@ router.get("/", async(req, res) => {
     }
 
     let pds = await (await getAllNike()).slice(start, end);
+
+    for (let pd of pds) {
+        pd.price = priceForShow(pd.price);
+    }
+
     res.render('Brandpage/nikePage', {
         title: () => 'Nike',
         cssP: () => 'Nike/cssNikePage',

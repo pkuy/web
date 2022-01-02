@@ -1,0 +1,48 @@
+<div class="container-cart">
+
+    <div class="title section-title">
+        <h3 class="section-bestseller title secondary-title">HÓA ĐƠN CỦA CỦA {{User.fullname}}</h3>
+    </div>
+
+    <div class="content-table table-hover">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Thời gian</th>
+                    <th scope="col">SĐT</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Trạng thái</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each Orders}}
+                <tr >
+                    <th scope="row">{{this.order_id}}</th>
+                    <td>{{this.total}}</td>
+                    <td>{{this.order_time}}</td>
+                    <td>{{this.order_phone}}</td>
+                    <td>{{this.address}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                        <a href="/order/{{this.order_id}}/detail"  class="payment_option" style="padding: 5px; font-size:15px">
+                            Chi tiết
+                        </a>
+                        <!--
+                        <button type="button" class="payment_option" style="padding: 5px; font-size:15px"
+                            data-toggle="modal" data-type="one" data-name="{{this.shoes_name}}"
+                            data-c_id="{{Cart_id}}" data-s_id={{this.shoes_id}} data-target="#removeModal">
+                            Xóa
+                        </button>
+                        -->
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>

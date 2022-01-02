@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { getUserById, getCartId, getCartContent, getCrrCartPrice,
-    addToCart, removeOneFromCart, removeAllFromCart } = require('../models/user/cart');
+const { getUserById, getCartId, priceForShow, getCartContent, getCrrCartPrice,
+    addToCart, removeOneFromCart, removeAllFromCart } = require('../../models/user/cart');
 
 
 router.get("/", async(req,res) =>{
@@ -18,11 +18,16 @@ router.get("/", async(req,res) =>{
         c_price = 0;
     }
 
+    //Hiển thị giá
+    for (let content of c_content) {
+        content.price = priceForShow(content.price);
+    }
+    c_price = priceForShow(c_price);
+
     res.render('cart/cart', {
-        titleP: () => 'titleCart',
-        cssP: () => 'cssCart',
-        scriptsP: () => 'scriptCart',
-        navP: () => 'nav',
+        title: "Giỏ hàng",
+        cssP: () => 'Cart/cssCart',
+        scriptsP: () => 'Cart/scriptCart',
         Cart_id: c_id,
         User: user,
         Contents: c_content,
@@ -30,7 +35,7 @@ router.get("/", async(req,res) =>{
     });
 });
 
-router.post('/:shoesid/:quantity', async(req, res) => {
+router.post('/:shoesid/', async(req, res) => {
     // Tạm
     let u_id = 3;
     
@@ -38,13 +43,9 @@ router.post('/:shoesid/:quantity', async(req, res) => {
     let c_id = await getCartId(u_id);
 
     let s_id = req.params.shoesid;
-    let quantity = req.params.quantity;
+    let quantity = req.body.quantity;
 
     let addRow = await addToCart(c_id, s_id, quantity);
-    if (addRow.e) {
-        console.log(addRow.e);
-    }
-    console.log("Đã thêm: ", addRow);
     
     res.redirect('back');
 });

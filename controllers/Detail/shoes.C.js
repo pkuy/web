@@ -1,10 +1,15 @@
 const express = require("express");
-const { getShoes } = require("../../models/user/shoes");
+const { getShoes, priceForShow } = require("../../models/user/shoes");
 const router = express.Router();
 
 router.get("/:id/detail", async(req, res) => {
     let shoesId = req.params.id;
     let pd = await getShoes(shoesId);
+    pd.price = priceForShow(pd.price);
+
+    console.log(pd);
+
+    let Brand;
 
     if (pd.brand_id == 1) {
         Brand = "Nike"
@@ -18,11 +23,7 @@ router.get("/:id/detail", async(req, res) => {
         title: `${pd.shoes_name}`,
         cssP: () => 'Detail/cssShoes',
         scriptsP: () => 'Adidas/scriptAdidasPage',
-        name: pd.shoes_name,
-        size: pd.size,
-        stock: pd.stock,
-        image: pd.image,
-        price: pd.price,
+        Shoes: pd,
         brand: Brand
     });
 });

@@ -5,142 +5,9 @@
     padding: 0;
 }
 
-
 html {
     font-size: 10px;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    max-width: auto;
 }
-
-
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
-
-input,
-textarea,
-select,
-button {
-    outline: none;
-}
-
-input {
-    line-height: normal;
-}
-
-label,
-button {
-    cursor: pointer;
-}
-
-a {
-    text-decoration: none;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-body {
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    line-height: 1;
-}
-
-
-/* Code phần header */
-
-.navigation {
-    background-color: white;
-    position: sticky;
-    font-size: 1.8rem;
-    width: 100%;
-    height: 15vh;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    text-align: center;
-    align-items: center;
-}
-
-.nav__menu {
-    display: inline-block;
-    margin: 1.rem 1.5rem;
-}
-
-.items-link {
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: black;
-    text-transform: capitalize;
-}
-
-.nav__logo a {
-    color: black;
-}
-
-.nav__menu--item {
-    display: inline-block;
-    margin: 0 1rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-}
-
-.items-link:hover {
-    color: #f4a261;
-}
-
-.fas {
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: black;
-}
-
-.advertisement {
-    width: auto;
-    height: 75vh;
-    overflow: hidden;
-}
-
-.advertisement img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.nav__logo a h3 {
-    font-size: 1.75rem;
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-
-.nav__logo a:hover,
-.items-link:hover {
-    text-decoration: none;
-}
-
-.nav__menu--item {
-    display: inline-block;
-    margin: 0 1rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-}
-
-.fas {
-    padding-top: 1.2rem;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: black;
-}
-
 
 /* Section  - bestseller */
 
@@ -305,13 +172,12 @@ body {
     right: 15rem;
 }
 
-
 .btn1 {
-    right: 50rem;
+    right: 48rem;
 }
 
 .btn2 {
-    right: 30rem;
+    right: 28rem;
 }
 
 .payment_option {

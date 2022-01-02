@@ -1,7 +1,7 @@
 <div class="container-cart">
 
     <div class="title section-title">
-        <h3 class="section-bestseller title secondary-title">GIỎ HÀNG CỦA BẠN</h3>
+        <h3 class="section-bestseller title secondary-title">GIỎ HÀNG CỦA {{User.fullname}}</h3>
     </div>
 
     <div class="content-table table-hover">
@@ -26,7 +26,8 @@
                     <td>
                         <button type="button" class="payment_option" style="padding: 5px; font-size:15px"
                             data-toggle="modal" data-type="one" data-name="{{this.shoes_name}}"
-                            data-c_id="{{Cart_id}}" data-s_id={{this.shoes_id}} data-target="#removeModal">
+                            data-c_id="{{Cart_id}}" data-s_id={{this.shoes_id}} data-size={{this.size}}
+                            data-target="#removeModal">
                             Xóa
                         </button>
                     </td>
@@ -114,10 +115,10 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Sđt</label>
             <div class="col-sm-10">
-              <input type="text" readonly class="form-control-plaintext" style="font-size: 15px;" value="{{User.phone}}">
+              <input type="text" class="form-control" require style="font-size: 15px;" name="o_phone" value="{{User.phone}}">
             </div>
           </div>
-          <div id="additionDetail">
+          <div id="additionalDetail">
             
           </div>
         </form>
@@ -145,9 +146,27 @@
       </div>
       <div id="errorModalMsg" class="modal-body">
         {{result.msg}}
+        {{#if result.eProduct}}
+          <br></br>
+        {{/if}}
+        {{#each result.eProduct}}
+          <div>- {{this.shoes_name}}
+            {{#if this.size}}
+            , size {{this.size}}</div>
+            {{else}} </div>
+            {{/if}}
+        {{/each}}
+        {{#if result.eProduct.size}}
+          <br>
+          <div> Vui lòng xóa khỏi giỏ hàng và thêm lại số lượng ít hơn.</div>
+        {{/if}}
       </div>
       <div class="modal-footer">
-        <button id="errorModalOk" type="button" class="btn btn-success" style="font-size: 15px" data-dismiss="modal">Ok</button>
+        <form name="nextForm" action="/cart/" method="get">
+            <button id="errorModalOk" type="submit" class="btn btn-success" style="font-size: 15px">
+              Ok
+            </button>
+        </form>
       </div>
     </div>
   </div>
@@ -159,22 +178,36 @@
 <script>
   
   document.addEventListener('DOMContentLoaded', function () {
+    // Thông báo kết quả thanh toán
+    {{#if result}}
+    $(document).ready(function() {
+      $('#errorModal').modal('toggle');
+      let resState = {{result.state}};
+      if (resState == -1) {
+        $('#errorModalHeader').text("Lỗi đặt hàng");
+        document.getElementById("errorModalOk").setAttribute("class", "btn btn-danger");
+      }
+      else if (resState == -2) {
+        $('#errorModalHeader').text("Lỗi thanh toán");
+        document.getElementById("errorModalOk").setAttribute("class", "btn btn-danger");
+      }
+      else if (resState == 1) {
+        $('#errorModalHeader').text("Đặt hàng thành công");
+        document.getElementById("errorModalOk").setAttribute("class", "btn btn-success");
+      }
+      else if (resState == 2) {
+        $('#errorModalHeader').text("Thanh toán thành công");
+        document.getElementById("errorModalOk").setAttribute("class", "btn btn-success");
+      }
+    });
+    {{/if}}
+    
     // Phần của remove
     var removeType;
     var c_id;
     var s_id;
     var btnRemove = document.getElementById("btnRemove");
     var removeForm = document.forms['removeForm'];
-    {{#if result}}
-    $(document).ready(function() {
-      $('#errorModal').modal('toggle');
-      let resState = {{result.state}};
-      if (resState == 0) {
-        $('#errorModalHeader').text("Lỗi thanh toán");
-        document.getElementById("errorModalOk").setAttribute("class", "btn btn-danger");
-      }
-    });
-    {{/if}}
 
     // Khi remove modal hiện lên
     $('#removeModal').on('show.bs.modal', function (event) {
@@ -186,34 +219,34 @@
       if (removeType === "one") {
         s_id = passBtn.data('s_id');
         var s_name = passBtn.data('name');
+        var s_size = passBtn.data('size');;
 
         $('#removeModalHead').text("Xóa sản phẩm khỏi giỏ hàng");
-        $('#removeModalMsg').text(`Bạn có chắc chắn muốn xóa ${s_name} khỏi giỏ hàng?`);
+        $('#removeModalMsg').text(`  Bạn có chắc chắn muốn xóa ${s_name}, size ${s_size} khỏi giỏ hàng?`);
       }
       else {
         $('#removeModalHead').text("Xóa giỏ hàng");
-        $('#removeModalMsg').text(`Bạn có chắc chắn muốn xóa mọi sản phẩm khỏi giỏ hàng?`);
+        $('#removeModalMsg').text(`  Bạn có chắc chắn muốn xóa mọi sản phẩm khỏi giỏ hàng?`);
       }
     });
 
     // Khi click vào nút chấp nhận xóa trong remove modal
     btnRemove.onclick = function () {
-      alert("Xóa thành công");
 
       // Nếu xóa 1 sản phẩm
       if (removeType === "one") {
-        removeForm.action = '/giohang/' + s_id + '?_method=DELETE';
+        removeForm.action = '/cart/' + s_id + '?_method=DELETE';
         return removeForm.submit();
         
       }
       // Nếu xóa cả giỏ hàng
-      removeForm.action = '/giohang/?_method=DELETE';
+      removeForm.action = '/cart/?_method=DELETE';
       removeForm.submit();
     };
     // Hết phần của remove
 
     // Phần của thanh toán
-    var paymentType
+    var paymentType;
     var btnPayment = document.getElementById("btnPayment");
     var paymentForm = document.forms['paymentForm'];
     // Khi payment modal hiện lên
@@ -226,15 +259,15 @@
       if (paymentType === "now") {
         $('#paymentModalHead').text("Thanh toán ngay");
         $('#paymentModalMsg').text(`Vui lòng nhập thông tin tài khoản ngân hàng thanh toán`);
-        $('#additionDetail').html(``);
+        $('#additionalDetail').html(``);
       }
       else {
         $('#paymentModalHead').text("Đặt hàng");
         $('#paymentModalMsg').text(`Vui lòng nhập địa chỉ giao hàng`);
-        $('#additionDetail').html(`<div class="form-group row">
+        $('#additionalDetail').html(`<div class="form-group row">
               <label class="col-sm-2 col-form-label">Địa chỉ</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" require style="font-size: 15px;">
+                <input type="text" class="form-control" require name="o_address" style="font-size: 15px;">
               </div>
             </div>`);
       }
@@ -250,7 +283,7 @@
       }
       // Nếu chọn đặt hàng
       paymentForm.action = '/order/0';
-      paymentForm.submit();
+      return paymentForm.submit();
     };
     // Hết phần của thanh toán
   });

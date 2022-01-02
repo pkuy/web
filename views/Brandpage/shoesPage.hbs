@@ -1,49 +1,132 @@
 <div class="detail-route">
-        <i class="ti-home"> <a href="/">Trang Chủ ></a></i>
-        <i class="ti-angle-right"><a href="/{{this.brand}}">{{this.brand}} ></a></i>
-        <i class="ti-angle-right"> <a>{{this.name}}</a> </i>
+    <i class="ti-home"> <a href="/">Trang Chủ ></a></i>
+    <i class="ti-angle-right"><a href="/{{brand}}">{{brand}} ></a></i>
+    <i class="ti-angle-right"> <a>{{Shoes.shoes_name}}</a> </i>
+</div>
+<div class="detail-container">
+    <div class="detail-img">
+        <img src="{{Shoes.image}}" width="100%">
     </div>
-    <div class="detail-container">
-        <div class="detail-img">
-            <img src="{{this.image}}" width="100%">
+    <div class="detail-content">
+        <div class="detail-name information">
+            <span>Giày tên: {{Shoes.shoes_name}}</span>
         </div>
-        <div class="detail-content">
-            <div class="detail-name information">
-                <span>Giày tên: {{this.name}}</span>
-            </div>
 
-            <div class="detail-price information">
-                <span>Giá: {{this.price}}</span>
-            </div>
-
-            <div class="detail-size information">
-                <span>Size : </span>
-                <span id ="info--size">{{this.size}}</span>
-            </div>
-
-            <div class="detail-stock information">
-                <span>Còn: {{this.stock}} sản phẩm   </span>
-            </div>
-
-            <div class="detail-buy">
-                <form>
-                <button>MUA NGAY</button>
-                </form>
-            </div>
-            <div class="detail-contract">
-                <div class="detail-phone">Tư vấn: 0123456789</div>
-                <img src="https://theme.hstatic.net/1000230642/1000679613/14/zalopay.png?v=4184" >
-                <img src="https://theme.hstatic.net/1000230642/1000679613/14/visa.png?v=4184" >
-                <img src="https://theme.hstatic.net/1000230642/1000679613/14/mastercard.png?v=4184" >
-                <img src="https://theme.hstatic.net/1000230642/1000679613/14/cod.png?v=4184" >
-            </div>
+        <div class="detail-price information">
+            <span>Giá: {{Shoes.price}}</span>
         </div>
-    </div>
-    <div class="detail-review">
-        <div class="detail-review-cmt">
-            <input type="text" placeholder="Bình luận sản phẩm tại đây">
+
+        <div class="detail-size information">
+            <span>Size : </span>
+            <span id="info--size">{{Shoes.size}}</span>
         </div>
-        <div class="detail-review-submit">
-            <button>Gửi đánh giá </button>   
+
+        <div class="detail-stock information">
+            <span>Còn: {{Shoes.stock}} sản phẩm </span>
+        </div>
+
+        <div class="detail-buy">
+            <button type="button" data-toggle="modal" data-target="#addToCartModal">
+                <!--data-s_id={{Shoes.shoes_id}} data-name="{{Shoes.name}}" data-size={{Shoes.size}}>-->
+                Mua Ngay
+            </button>
+        </div>
+        <div class="detail-contract">
+            <div class="detail-phone">Tư vấn: 0123456789</div>
+            <img src="https://theme.hstatic.net/1000230642/1000679613/14/zalopay.png?v=4184">
+            <img src="https://theme.hstatic.net/1000230642/1000679613/14/visa.png?v=4184">
+            <img src="https://theme.hstatic.net/1000230642/1000679613/14/mastercard.png?v=4184">
+            <img src="https://theme.hstatic.net/1000230642/1000679613/14/cod.png?v=4184">
         </div>
     </div>
+</div>
+<div class="detail-review">
+    <div class="detail-review-cmt">
+        <input type="text" placeholder="Bình luận sản phẩm tại đây">
+    </div>
+    <div class="detail-review-submit">
+        <button>Gửi đánh giá </button>
+    </div>
+</div>
+
+<!-- Add to cart modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="addToCartModalHead" class="modal-title" style="font-size: 20px;">Thêm vào giỏ hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="addToCartModalMsg">
+          Bạn có chắc chắn muốn thêm {{Shoes.shoes_name}}, size {{Shoes.size}} vào giỏ hàng?
+        </div>
+        <br>
+        <div>
+          Nếu muốn, nhập số lượng cần thêm:
+        </div>
+        <br>
+        <form name="addToCartForm" method="post" action="/cart">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Số lượng</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" require style="font-size: 15px;" name="quantity" value="-1">
+            </div>
+          </div>
+        </form>
+        <div  id="formBack" role="alert">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btnaddToCart" type="button" class="btn btn-success" style="font-size: 15px">Xác nhận</button>
+        <button type="button" class="btn btn-secondary" style="font-size: 15px" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    var s_id = {{Shoes.shoes_id}};
+    var btnAdd = document.getElementById("btnaddToCart");
+    var addToCartForm = document.forms['addToCartForm'];
+    /*
+    // Khi modal hiện lên
+    $('#addToCartModal').on('show.bs.modal', function (event) {
+      var passBtn = $(event.relatedTarget);
+
+      s_id = passBtn.data('s_id');
+      s_name = passBtn.data('name');
+      s_size = passBtn.data('size');
+      $('#addToCartModalMsg').text(`Bạn có chắc chắn muốn thêm ${s_name}, size ${s_size} vào giỏ hàng?`);
+    });
+    */
+    // Khi click vào xác nhận thêm sản phẩm
+    btnAdd.onclick = function () {
+      console.log(s_id);
+      let test_quantity = addToCartForm.quantity.value;
+      if (!test_quantity) {
+          document.getElementById("formBack").setAttribute('class', "alert alert-danger");
+          $('#formBack').text("Vui lòng nhập số lượng.");
+          return;
+      }
+      if (test_quantity != parseInt(test_quantity)) {
+          document.getElementById("formBack").setAttribute('class', "alert alert-danger");
+          $('#formBack').text("Vui lòng nhập số lượng là số nguyên.");
+          return;
+      }
+      if (test_quantity <= 0) {
+          document.getElementById("formBack").setAttribute('class', "alert alert-danger");
+          $('#formBack').text("Vui lòng nhập số lượng > 0.");
+          return;
+      }
+
+      addToCartForm.action = '/cart/' + s_id;
+      return addToCartForm.submit();
+    };
+  });
+</script>

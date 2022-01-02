@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllBitis } = require("../../models/user/bitis");
+const { getAllBitis, priceForShow } = require("../../models/user/bitis");
 const router = express.Router();
 
 router.get("/", async(req, res) => {
@@ -22,6 +22,11 @@ router.get("/", async(req, res) => {
     }
 
     let pds = await (await getAllBitis()).slice(start, end);
+
+    for (let pd of pds) {
+        pd.price = priceForShow(pd.price);
+    }
+
     res.render('Brandpage/bitisPage', {
         title: 'Bitis',
         cssP: () => 'Bitis/cssBitisPage',
