@@ -1,0 +1,385 @@
+/* CÀI ĐẶT BAN ĐẦU */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    max-width: auto;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+input,
+textarea,
+select,
+button {
+    outline: none;
+}
+
+input {
+    line-height: normal;
+}
+
+label,
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+
+
+/* Code phần header */
+
+.navigation {
+    background-color: white;
+    position: sticky;
+    font-size: 1.8rem;
+    width: 100%;
+    height: 15vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    text-align: center;
+    align-items: center;
+}
+
+.nav__menu {
+    display: inline-block;
+    margin: 1 1.5rem;
+}
+
+.items-link {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: black;
+    text-transform: capitalize;
+}
+
+.nav__logo a {
+    color: black;
+}
+
+.nav__menu--item {
+    display: inline-block;
+    margin: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.items-link:hover {
+    color: #f4a261;
+}
+
+.fas {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: black;
+}
+
+.advertisement {
+    width: auto;
+    height: 75vh;
+    overflow: hidden;
+}
+
+.advertisement img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.nav__logo a h3 {
+    font-size: 1.75rem;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.nav__logo a:hover,
+.items-link:hover
+{
+    text-decoration: none;
+}
+
+/* Section  - bestseller */
+
+.section-title {
+    position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    text-align: center;
+    line-height: 2.8rem;
+    font-size: 1.8rem;
+    background-color: #034ea1;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.secondary-title {
+    text-align: center;
+    margin: 0.5rem 0 0.5rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    padding: 0.2rem 8rem;
+}
+
+
+
+/* Code cho các thông tin cửa hàng*/
+
+.Information {
+    border-top: 1px solid #e3e6e9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    grid-gap: 5rem;
+}
+
+.social__icons {
+    list-style: none;
+    padding: 3rem;
+}
+
+.social__icons--item {
+    display: inline-block;
+    margin: 2rem;
+    font-size: 2.8rem;
+    cursor: pointer;
+    border: none;
+}
+
+.social__icons--item .fab {
+    font-size: 3.8rem;
+}
+
+.social__icons--item .fab:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.fab-fb,
+.fab-tt {
+    color: #034ea1;
+}
+
+.fab-yt {
+    color: #bb0a1f;
+}
+
+.fa-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    /* Also define standard property for compatibility */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact {
+    list-style: none;
+}
+
+.contact li {
+    margin: 1.5rem 0;
+    margin-left: 25rem;
+}
+
+
+/*Code cho paginations*/
+
+.page {
+    text-align: center;
+}
+
+.pagination {
+    text-align: center;
+    margin: 5rem 0;
+}
+
+.page-item {
+    display: inline-block;
+    border: 0.02rem solid #dee2e6;
+    padding: 0.7rem 0.7rem;
+}
+
+.page-link {
+    color: #0d6efd;
+    font-size: 1.6rem;
+}
+
+.title.section-title{
+    margin-bottom: 4rem;
+}
+
+
+
+/* css cho container payment */
+.container-payment {
+    border-top: 1px solid #ccc;
+    width: 100%;
+    height: 70vh;
+    position: relative;
+}
+.info-customer input{
+    padding:1.2rem 1.5rem;
+}
+/* Start info */
+.info {
+    display: inline-block;
+}
+
+.info__customer{
+    position: absolute;
+    padding: 10px 36px;
+    width: 60%;
+    text-align: left;
+}
+
+.info-contact input:last-child{
+    margin-left:4.35%;
+}
+
+
+/* link-control */
+.link-control {
+    padding: 8px 5px;
+}
+    
+
+.link-control__control {
+    display: inline;
+}
+
+.link-control__home,
+.link-control__cart,
+.link-control__payment {
+    color: black;
+}
+
+.link-control__home:hover,
+.link-control__cart:hover,
+.link-control__payment:hover {
+    opacity: 0.7;
+}
+
+h2 {
+    padding: 20px 10px 10px;
+}
+
+/* link-login */
+
+.link-login {
+    padding: 5px 10px;
+}
+
+/* info customer */
+.info-customer {
+    padding: 20px 10px 10px;
+}
+
+.form-info__fullname {
+    width: 90%;
+}
+
+.form-info__email{
+    width: 55%;
+}
+
+.form-info__phone {
+    width: 30%;
+}
+
+.form-info {
+    padding: 16px 0;
+    margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+.info-address .form-info {
+    width: 90%;
+}
+.confirm{
+    position: relative;
+}
+
+.btn-confirm {
+    position: absolute;
+    right:9rem;
+    padding: 15px;
+    background-color: #034ea1;
+    border: 1px solid #ccc;
+}
+.btn-confirm a {
+    
+    
+    color: #fff;
+   
+   
+    
+    right:5rem;
+}
+
+.btn-confirm:hover a{
+    opacity: 0.7;
+}
+
+
+/* End info */
+
+/* END CSS */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Code cho footer */
+
+footer {
+    color: #e9ecef;
+    background-color: #212529;
+    padding: 1.4rem;
+    text-align: center;
+}

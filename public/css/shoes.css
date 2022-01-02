@@ -1,0 +1,135 @@
+.detail-route {
+    background-color: #efefef;
+    height: 50px;
+    padding-left: 10%;
+}
+
+.detail-route i {
+    line-height: 50px;
+    color: #878087;
+}
+
+.detail-route i a {
+    font-size: 20px;
+    color: black;
+}
+
+
+/* Code phần container */
+
+.detail-container {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+}
+
+.detail-img {
+    width: 30%;
+    min-height: 250px;
+    margin-left: 10%;
+    overflow: hidden;
+}
+
+.detail-img:hover img {
+    transform: scale(1.5);
+}
+
+.detail-content {
+    width: 55%;
+    padding-left: 5%;
+}
+
+.information {
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.detail-size #info--size {
+    padding: 0.5rem;
+    border: 0.15px solid #30261e;
+}
+
+.detail-price {
+    color: #ef233c;
+}
+
+.detail-buy {
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.detail-buy button {
+    background-color: #ef233c;
+    color: white;
+    letter-spacing: 3px;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 2.5rem;
+    border-radius: 5px;
+}
+
+.detail-contract {
+    display: flex;
+    height: 30px;
+    padding: 20px;
+    border-top: 1px solid;
+    margin-top: 50px;
+    margin-right: 100px;
+}
+
+.detail-contract .detail-phone {
+    line-height: 30px;
+    cursor: pointer;
+    width: 60%;
+}
+
+.detail-contract img {
+    margin-left: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+
+/* Code phần review */
+
+.detail-review {
+    margin-top: 50px;
+    width: 90%;
+    margin-left: 10%;
+    display: flex;
+    min-height: 50px;
+    margin-bottom: 50px;
+}
+
+.detail-review .detail-review-cmt {
+    width: 30%;
+    line-height: 50px;
+}
+
+.detail-review .detail-review-cmt input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid;
+    padding: 0.5rem 1rem;
+}
+
+.detail-review .detail-review-submit {
+    width: 50%;
+    line-height: 50px;
+}
+
+.detail-review .detail-review-submit button {
+    background-color: #034ea1;
+    color: white;
+    cursor: pointer;
+    border: none;
+    margin-left: 12.5rem;
+    padding: 0.25rem 1rem;
+    border-radius: 5px;
+}

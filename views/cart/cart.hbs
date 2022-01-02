@@ -1,0 +1,257 @@
+<div class="container-cart">
+
+    <div class="title section-title">
+        <h3 class="section-bestseller title secondary-title">GIỎ HÀNG CỦA BẠN</h3>
+    </div>
+
+    <div class="content-table table-hover">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Giá / 1 sản phẩm</th>
+                    <th scope="col">Số lượng</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each Contents}}
+                <tr >
+                    <th scope="row">{{this.shoes_name}}</th>
+                    <td>{{this.size}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.cart_quantity}}</td>
+                    <td>
+                        <button type="button" class="payment_option" style="padding: 5px; font-size:15px"
+                            data-toggle="modal" data-type="one" data-name="{{this.shoes_name}}"
+                            data-c_id="{{Cart_id}}" data-s_id={{this.shoes_id}} data-target="#removeModal">
+                            Xóa
+                        </button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <td>Tổng giá tiền:</td>
+                <td>
+                  {{sumPrice}}
+                </td>
+              </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="btn-payment">
+        <button type="button" class="btn-item btn1 payment_option"
+        data-c_id="{{Cart_id}}" data-type="all" data-toggle="modal" data-target="#removeModal">
+            Xóa giỏ hàng
+        </button>
+
+        <button type="button" class="btn-item btn2 payment_option"
+        data-c_id="{{Cart_id}}" data-type="now" data-toggle="modal" data-target="#paymentModal">
+            Thanh toán ngay
+        </button>
+
+        <button type="button" class="btn-item btn3 payment_option"
+        data-c_id="{{Cart_id}}" data-type="then" data-toggle="modal" data-target="#paymentModal">
+            Đặt hàng
+        </button>
+    </div>
+
+</div>
+
+<!-- Confirm remove modal -->
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="removeModalHead" class="modal-title" style="font-size: 20px;">Xóa khỏi giỏ hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="removeModalMsg" class="modal-body">
+        Bạn có chắc muốn xóa giày ... khỏi giỏ hàng?
+      </div>
+      <div class="modal-footer">
+        <button id="btnRemove" type="button" class="btn btn-danger" style="font-size: 15px">Xóa</button>
+        <button type="button" class="btn btn-secondary" style="font-size: 15px" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form remove ẩn -->
+<form name="removeForm" method="POST" action=""></form>
+
+
+<!-- Payment modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="paymentModalHead" class="modal-title" style="font-size: 20px;">Hình thức thanh toán</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="paymentModalMsg">
+          Vui lòng nhập thêm thông tin
+        </div>
+        <br>
+        <form name="paymentForm" method="post" action="">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Họ tên</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" style="font-size: 15px;" value="{{User.fullname}}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sđt</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" style="font-size: 15px;" value="{{User.phone}}">
+            </div>
+          </div>
+          <div id="additionDetail">
+            
+          </div>
+        </form>
+      
+      </div>
+      <div class="modal-footer">
+        <button id="btnPayment" type="button" class="btn btn-success" style="font-size: 15px">Tạo hóa đơn</button>
+        <button type="button" class="btn btn-secondary" style="font-size: 15px" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Error modal -->
+<!-- Confirm remove modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="errorModalHeader" class="modal-title" style="font-size: 20px;">Kết quả thanh toán</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="errorModalMsg" class="modal-body">
+        {{result.msg}}
+      </div>
+      <div class="modal-footer">
+        <button id="errorModalOk" type="button" class="btn btn-success" style="font-size: 15px" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Script cho cả trang -->
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Phần của remove
+    var removeType;
+    var c_id;
+    var s_id;
+    var btnRemove = document.getElementById("btnRemove");
+    var removeForm = document.forms['removeForm'];
+    {{#if result}}
+    $(document).ready(function() {
+      $('#errorModal').modal('toggle');
+      let resState = {{result.state}};
+      if (resState == 0) {
+        $('#errorModalHeader').text("Lỗi thanh toán");
+        document.getElementById("errorModalOk").setAttribute("class", "btn btn-danger");
+      }
+    });
+    {{/if}}
+
+    // Khi remove modal hiện lên
+    $('#removeModal').on('show.bs.modal', function (event) {
+      var passBtn = $(event.relatedTarget);
+
+      removeType = passBtn.data('type');
+      c_id = passBtn.data('c_id');
+
+      if (removeType === "one") {
+        s_id = passBtn.data('s_id');
+        var s_name = passBtn.data('name');
+
+        $('#removeModalHead').text("Xóa sản phẩm khỏi giỏ hàng");
+        $('#removeModalMsg').text(`Bạn có chắc chắn muốn xóa ${s_name} khỏi giỏ hàng?`);
+      }
+      else {
+        $('#removeModalHead').text("Xóa giỏ hàng");
+        $('#removeModalMsg').text(`Bạn có chắc chắn muốn xóa mọi sản phẩm khỏi giỏ hàng?`);
+      }
+    });
+
+    // Khi click vào nút chấp nhận xóa trong remove modal
+    btnRemove.onclick = function () {
+      alert("Xóa thành công");
+
+      // Nếu xóa 1 sản phẩm
+      if (removeType === "one") {
+        removeForm.action = '/giohang/' + s_id + '?_method=DELETE';
+        return removeForm.submit();
+        
+      }
+      // Nếu xóa cả giỏ hàng
+      removeForm.action = '/giohang/?_method=DELETE';
+      removeForm.submit();
+    };
+    // Hết phần của remove
+
+    // Phần của thanh toán
+    var paymentType
+    var btnPayment = document.getElementById("btnPayment");
+    var paymentForm = document.forms['paymentForm'];
+    // Khi payment modal hiện lên
+    $('#paymentModal').on('show.bs.modal', function (event) {
+      var passBtn = $(event.relatedTarget);
+
+      paymentType = passBtn.data('type');
+      c_id = passBtn.data('c_id');
+
+      if (paymentType === "now") {
+        $('#paymentModalHead').text("Thanh toán ngay");
+        $('#paymentModalMsg').text(`Vui lòng nhập thông tin tài khoản ngân hàng thanh toán`);
+        $('#additionDetail').html(``);
+      }
+      else {
+        $('#paymentModalHead').text("Đặt hàng");
+        $('#paymentModalMsg').text(`Vui lòng nhập địa chỉ giao hàng`);
+        $('#additionDetail').html(`<div class="form-group row">
+              <label class="col-sm-2 col-form-label">Địa chỉ</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" require style="font-size: 15px;">
+              </div>
+            </div>`);
+      }
+    });
+
+    // Khi click vào nút tạo hóa đơn trong payment modal
+    btnPayment.onclick = function () {
+
+      // Nếu chọn thanh toán ngay
+      if (paymentType === "now") {
+        paymentForm.action = '/order/1';
+        return paymentForm.submit();
+      }
+      // Nếu chọn đặt hàng
+      paymentForm.action = '/order/0';
+      paymentForm.submit();
+    };
+    // Hết phần của thanh toán
+  });
+</script>

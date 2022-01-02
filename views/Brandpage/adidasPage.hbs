@@ -1,0 +1,62 @@
+<section class="section-carousel">
+
+    <div class="carousel">
+
+        <div class="carousel__item">
+            <img src="./img/barrett-ward.jpg">
+        </div>
+
+    </div>
+
+</section>
+<div class="container">
+    <div class="title section-title">
+        <h3 class="section-bestseller--title secondary-title">GIÀY ADIDAS</h3>
+    </div>
+    <div class="product">
+
+        {{#each Packages}}
+        <div class="product__item" onmouseover="showPurchasegoods(this)" onmouseout="hidePurchasegoods(this)">
+            <div class="product__item--img">
+                <img src="{{this.image}}" alt="photo1" width="100%">
+            </div>
+
+            <div class="product__size" onmouseover="turnUp(this)" onmouseout="disappear(this)">
+                <div class="product__size--front">
+                    <span class="product__size-item">size</span>
+                </div>
+                <div class="product__size--back">
+                    <span class="product__size-item">{{this.size}}</span>
+                </div>
+            </div>
+            <div class="product__name">
+                <a href="/shoes/{{this.shoes_id}}/detail">{{this.shoes_name}}</a>
+            </div>
+            <div class="product__price">
+                {{this.price}}
+            </div>
+
+            <div class="product__buy btn">
+                <form class="btn--buy">
+                    <button>Thêm vào giỏ hàng</button>
+                </form>
+            </div>
+
+
+            <div class="product__stock">Còn {{this.stock}} sản phẩm </div>
+        </div>
+        {{/each}}
+
+    </div>
+    <div class="Page example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item ">
+                <a class="page-link" href="/nike?page={{this.PreviousPage}}">Trước</a>
+            </li>
+            <li class="page-item"><a class="page-link">{{this.page}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href="/nike?page={{this.NextPage}}">Tiếp theo</a>
+            </li>
+        </ul>
+    </div>
+</div>

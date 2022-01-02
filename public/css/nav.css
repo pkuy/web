@@ -1,0 +1,214 @@
+/* CÀI ĐẶT BAN ĐẦU */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    max-width: auto;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+input,
+textarea,
+select,
+button {
+    outline: none;
+}
+
+input {
+    line-height: normal;
+}
+
+label,
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    width: 100%;
+}
+
+
+/* Code phần header */
+
+.navigation {
+    background-color: white;
+    position: sticky;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    padding: 1.5rem 5rem;
+    padding-top: 1.5rem;
+    font-size: 2rem;
+    z-index: 3;
+}
+
+.nav__logo {
+    list-style: none;
+    padding: 1rem 1.5rem;
+    align-items: end;
+}
+
+.nav__logo a h3 {
+    color: #212529;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.nav__logo a:hover {
+    text-decoration: none;
+}
+
+.nav__menu .nav-item {
+    text-align: center;
+    padding: 1rem 1.5rem;
+}
+
+.nav-link {
+    color: #212529;
+}
+
+.nav-item.dropdown {
+    width: 60%;
+    padding-top: 1rem;
+    border-radius: 1rem;
+    padding-left: 1.5rem;
+    text-align: left;
+}
+
+.nav-link.dropdown-toggle {
+    color: #688dfd;
+}
+
+.dropdown-menu {
+    width: 110%;
+    padding: 1rem 0.5rem;
+    margin-left: -1rem;
+    border-radius: 1rem;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.nav-link:hover {
+    color: #f4a261;
+}
+
+
+/*Carousel */
+
+.section-carousel {
+    width: 100%;
+    height: 75vh;
+}
+
+.carousel {
+    width: 100%;
+    height: 75vh;
+}
+
+.carousel__item {
+    width: 100%;
+    height: 75vh;
+}
+
+.carousel__item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Code cho các thông tin cửa hàng*/
+
+.Information {
+    border-top: 1px solid #e3e6e9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    grid-gap: 5rem;
+}
+
+.social__icons {
+    list-style: none;
+    padding: 3rem;
+}
+
+.social__icons--item {
+    display: inline-block;
+    margin: 2rem;
+    font-size: 2.8rem;
+    cursor: pointer;
+    border: none;
+}
+
+.social__icons--item .fab {
+    font-size: 3.8rem;
+}
+
+.social__icons--item .fab:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.fab-fb,
+.fab-tt {
+    color: #034ea1;
+}
+
+.fab-yt {
+    color: #bb0a1f;
+}
+
+.fa-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    /* Also define standard property for compatibility */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact {
+    list-style: none;
+}
+
+.contact li {
+    margin: 1.5rem 0;
+    margin-left: 25rem;
+}
+
+
+/*Code cho footer */
+
+footer {
+    color: #e9ecef;
+    background-color: #212529;
+    padding: 1.4rem;
+    text-align: center;
+}
