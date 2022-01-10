@@ -1,0 +1,242 @@
+/* CSS cho container ManageProduct */
+
+.container-ManageProduct {
+
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.header__title {
+    width: 240px;
+    height: 44px;
+    line-height: 44px;
+    align-items: center;
+    display: block;
+    text-align: center;
+    margin: 2rem 0 4rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #034ea1;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.table__content {
+    text-align: center;
+    border: 1px solid #ccc;
+
+}
+
+td,
+th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border: 1px solid #dee2e6;
+}
+
+tbody tr th,
+tbody tr td {
+    text-align: center;
+}
+
+.edit-btn {
+    border: none;
+    display: block;
+    left: 0;
+    margin: 0.2rem 0.2rem;
+    color: #fff;
+    padding: 0.6rem 0.4rem;
+    background-color: #034ea1;
+    border-radius: 2px;
+}
+
+.edit-btn:hover {
+    background-color: #7d8a9a;
+}
+
+.add-product {
+    display: flex;
+    margin: 4rem 4rem 1rem;
+    justify-content: center;
+}
+.btn-add {
+    display: flex;
+    justify-content: center;
+}
+
+.add-btn {
+    
+    background-color: #034ea1;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 1.4rem;
+}
+
+.add-btn:hover {
+    background-color: #7d8a9a;
+}
+
+.confirm {
+    display: flex;
+    margin: 1rem 4rem 4rem;
+    justify-content: center;
+}
+
+.confirm-btn {
+    background-color: #034ea1;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 1.4rem;
+}
+
+.confirm-btn:hover {
+    background-color: #7d8a9a;
+}
+
+/* CSS Modal */
+
+.modal {
+    position: fixed;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-overlay {
+    position: relative;
+    display: block;
+    border: none;
+    width: 570px;
+    height: 330px;
+    background-color: white;
+    border-radius: 2px;
+    animation: fadeIn ease-in 0.2s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        scale: 0;
+        transform: translateY(-500px);
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.modal-add-product,
+.modal-edit-product {
+    border: none;
+    justify-content: center;
+    display: none;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.modal-add-product.open {
+    display: block;
+}
+
+.modal-edit-product.open {
+    display: block;
+}
+
+
+.modal__header h3 {
+    width: 420px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #034ea1;
+}
+
+.btn {
+    position: absolute;
+    right: 4px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    padding: 0;
+}
+
+.exit-btn {
+    border: none;
+    background-color: red;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+}
+
+.exit-btn:hover {
+    opacity: 0.6;
+}
+
+.modal__content { 
+    display: block;
+}
+
+.modal__content-form {
+    position: relative;
+    width: 95%;
+    margin: 6px 0;
+    display: flex;
+    padding: 4px;
+    left: 2.5%;
+    right: 2.5%;
+    font-size: 1.4rem;
+    border: 1px solid #ccc;
+}
+
+
+
+
+.modal-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.modal__confirm {  
+    position: absolute;
+    width: 240px;
+    height: 44px;
+    line-height: 44px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #034ea1;
+    border: none;
+    bottom: 2px;
+    right: 29%;
+}
+
+.modal__confirm:hover {
+    opacity: 0.8;
+}

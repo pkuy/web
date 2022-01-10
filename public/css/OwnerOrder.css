@@ -1,0 +1,207 @@
+/* CSS cho container ManageOrder */
+
+.container-ManageOrder {
+
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.header__title {
+    width: 240px;
+    height: 44px;
+    line-height: 44px;
+    align-items: center;
+    display: block;
+    text-align: center;
+    margin: 2rem 0 4rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #034ea1;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.table__content {
+    text-align: center;
+    border: 1px solid #ccc;
+
+}
+
+.table__content-thead {
+
+}
+
+td,
+th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border: 1px solid #dee2e6;
+}
+
+tbody tr th,
+tbody tr td {
+    text-align: center;
+}
+
+.edit-btn {
+    border: none;
+    display: block;
+    left: 0;
+    margin: 0.2rem 0.2rem;
+    color: #fff;
+    padding: 0.6rem 0.4rem;
+    background-color: #034ea1;
+    border-radius: 2px;
+}
+
+.edit-btn:hover {
+    background-color: #7d8a9a;
+}
+
+.confirm {
+    display: flex;
+    margin: 4rem;
+    justify-content: center;
+}
+
+.confirm-btn {
+    background-color: #034ea1;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 1.4rem;
+}
+
+.confirm-btn:hover {
+    background-color: #7d8a9a;
+}
+
+
+
+/* CSS Modal */
+.modal {
+    position: fixed;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-overlay {
+    display: block;
+    border: none;
+    width: 570px;
+    height: 242px;
+    background-color: white;
+    border-radius: 2px;
+    animation: fadeIn ease-in 0.2s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        scale: 0;
+        transform: translateY(-500px);
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content {
+    display: flex;
+    border: none;
+    justify-content: center;
+    
+}
+
+.modal__header {
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.modal__header h3 {
+    width: 240px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #034ea1;
+}
+
+.btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    padding: 0;
+}
+
+.exit-btn {
+    border: none;
+    background-color: red;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+}
+
+.exit-btn:hover {
+    opacity: 0.6;
+}
+
+
+
+.form-edit {
+    font-size: 1.4rem;
+    margin: 1rem;
+    padding: 0 1.5rem;    
+}
+
+.form-input {
+    margin: 4rem 0;
+    padding: 0.4rem;
+    width: 100%;
+    font-size: 14px;
+}
+
+.modal-btn {
+    display: flex;
+    justify-content: center;
+}
+.modal__confirm {  
+    
+    width: 240px;
+    height: 44px;
+    line-height: 44px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #034ea1;
+    border: none;
+    bottom: 2px;
+}
+
+.modal__confirm:hover {
+    opacity: 0.8;
+}

@@ -79,6 +79,13 @@ app.use('/giohang', authenToken, require("./controllers/Cart/cart.C"));
 
 app.use('/donhang', authenToken, require("./controllers/Order/order.C"));
 
+//route cho quan li san pham
+app.use('/quanlisanpham', require("./controllers/Owner/product.C"));
+
+//route cho quan li don hang
+app.use('/quanlidonhang', require("./controllers/Owner/order.C"));
+
+
 app.use('*', require("./controllers/Site/whoop.C"));
 
 app.listen(port, () => {

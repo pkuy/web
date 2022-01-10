@@ -1,0 +1,149 @@
+<div class="container-ManageProduct">
+
+    <div class="header">
+        <h2 class="header__title">Quản lý sản phẩm</h2>
+    </div>
+
+    <div class="table">
+
+        <table class="table__content">
+            <thead class="table__content-thead">
+                <tr>
+                    <th scope="col">Mã giày</th>
+                    <th scope="col">Tên giày</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Thương hiệu</th>
+                    <th scope="col">Kích thước</th>
+                    <th scope="col">Giá tiền</th>
+                    <th scope="col">Số lượng trong kho</th>
+                    <th scope="col">Chỉnh sửa</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{!-- {{#each Contents}} --}}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Nike 1</td>
+                    <td>
+                        <img src="" alt="">
+                    </td>
+                    <td>Nike</td>
+                    <td>42</td>
+                    <td>1.000.000 VNĐ</td>
+                    <td>90</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-product js-edit-product ">
+                            Chỉnh sửa
+                        </button> 
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-product js-remove-product">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Nike 2</td>
+                    <td>
+                        <img src="" alt="">
+                    </td>
+                    <td>Nike</td>
+                    <td>43</td>
+                    <td>1.000.000 VNĐ</td>
+                    <td>99</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-product js-edit-product">
+                            Chỉnh sửa
+                        </button>
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-product js-remove-product">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                {{!-- {{/each}} --}}
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <tfoot>
+        <div class="btn-add">
+            <button class="add-btn js-add-btn">
+            Thêm sản phẩm mới
+            </button>
+        </div>
+        
+
+        <form class="confirm" action="" method="" >
+            <button class="confirm-btn js-confirm-btn">
+                Xác nhận chỉnh sửa
+            </button>
+        </form>
+    </tfoot>
+
+</div>
+
+
+<div class="modal js-modal">
+    <div class="modal-overlay">
+
+        <div class="modal-add-product js-modal-add-product">
+            <div class="modal__header">
+                <h3>thông tin của sản phẩm mới</h3>
+                <div class="btn">
+                    <button class="exit-btn js-exit-btn"> x </button>
+                </div>
+
+            </div>
+
+            <div class="modal__content">
+                <input type="text" class="modal__content-form" placeholder="ID">
+                <input type="text" class="modal__content-form" placeholder="Tên giày">
+                <input type="text" class="modal__content-form" placeholder="Link ảnh">
+                <input type="text" class="modal__content-form" placeholder="ID hãng">
+                <input type="text" class="modal__content-form" placeholder="Kích thước">
+                <input type="text" class="modal__content-form" placeholder="Giá tiền">
+                <input type="text" class="modal__content-form" placeholder="Số lượng">
+            </div>
+
+
+        </div>
+
+        <div class="modal-edit-product js-modal-edit-product">
+            <div class="modal__header">
+                <h3>chỉnh sửa của sản phẩm vừa chọn</h3>
+                <div class="btn">
+                    <button class="exit-btn js-exit-btn"> x </button>
+                </div>
+            </div>
+
+            <div class="modal__content">
+                <input type="text" class="modal__content-form" placeholder="Giá tiền">
+                <input type="text" class="modal__content-form" placeholder="Số lượng">
+            </div>
+
+        </div>
+
+        <div class="modal-btn">
+
+            <form action="" method="">
+                <button class="modal__confirm js-modal__confirm">Xác nhận</button>
+            </form>
+            
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,188 @@
+<div class="container-ManageOrder">
+
+    <div class="header">
+        <h2 class="header__title">Quản lý đơn hàng</h2>
+    </div>
+
+    <div class="table">
+
+        <table class="table__content">
+
+            <thead class="table__content-thead">
+
+                <tr>
+                    <th scope="col">Mã đơn hàng</th>
+                    <th scope="col">Tài khoản đặt hàng</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Thời gian tạo hóa đơn</th>
+                    <th scope="col">Địa chỉ giao hàng</th>
+                    <th scope="col">Tình trạng đơn hàng</th>
+                    <th scope="col">Chỉnh sửa đơn hàng</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {{!-- {{#each Contents}} --}}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>tài khoản 1</td>
+                    <td>1.000.000 VNĐ</td>
+                    <td>03/01/2022</td>
+                    <td>Quảng Ngãi</td>
+                    <td>đã xác nhận</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-order js-edit-order">
+                            Chỉnh sửa
+                        </button> 
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-order js-remove-order">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th scope="row">2</th>
+                    <td>tài khoản 1</td>
+                    <td>1.000.000 VNĐ</td>
+                    <td>03/01/2022</td>
+                    <td>Quảng Ngãi</td>
+                    <td>đã xác nhận</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-order js-edit-order">
+                            Chỉnh sửa
+                        </button> 
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-order js-remove-order">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th scope="row">3</th>
+                    <td>tài khoản 1</td>
+                    <td>1.000.000 VNĐ</td>
+                    <td>03/01/2022</td>
+                    <td>Quảng Ngãi</td>
+                    <td>đã xác nhận</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-order js-edit-order">
+                            Chỉnh sửa
+                        </button> 
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-order js-remove-order">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">4</th>
+                    <td>tài khoản 2</td>
+                    <td>2.000.000 VNĐ</td>
+                    <td>03/01/2022</td>
+                    <td>Quảng Ngãi</td>
+                    <td>chưa xác nhận</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-order js-edit-order">
+                            Chỉnh sửa
+                        </button>
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-order js-remove-order">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">5</th>
+                    <td>tài khoản 2</td>
+                    <td>2.000.000 VNĐ</td>
+                    <td>03/01/2022</td>
+                    <td>Quảng Ngãi</td>
+                    <td>chưa xác nhận</td>
+                    <td class="edit">
+
+                        <button class="edit-btn edit-order js-edit-order">
+                            Chỉnh sửa
+                        </button> 
+
+                        <form action="" method="">
+                            <button class="edit-btn remove-order js-remove-order">
+                                Xóa
+                            </button> 
+                        </form>
+
+                    </td>
+                </tr>
+
+                {{!-- {{/each}} --}}
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <tfoot>
+        <form class="confirm" action="" method="">
+            <button class="confirm-btn">
+                Xác nhận chỉnh sửa
+            </button>
+        </form>
+    </tfoot>
+
+</div>
+
+
+
+<div class="modal js-modal">
+    
+    <div class="modal-overlay js-modal-overlay">
+
+        <div class="modal-content">
+            <div class="modal__header">
+                <h3>Nhập trạng thái đơn hàng</h3>
+                <div class="btn">
+                    <button class="exit-btn js-exit-btn"> x </button>
+                </div>
+                
+
+            </div>
+
+            <div class="modal__form-edit">
+                <form action="" method="" class="form-edit">
+                    Tình trạng đơn hàng 
+                    <input type="text" class="form-input" placeholder="...">
+                </form>
+            </div>  
+
+        </div>
+        <div class="modal-btn">
+            <form action="" method="">
+                <button class="modal__confirm js-modal__confirm">Xác nhận</button>
+            </form>
+            
+        </div>
+        
+
+    </div>
+
+</div>
