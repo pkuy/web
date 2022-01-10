@@ -41,6 +41,9 @@ var hbs = exhbs.create({
         compareInt(int1, int2, options) {
             return +int1 === +int2 ? options.fn(this) : options.inverse(this);
         },
+        compareInt2(int1, int2, options) {
+            return +int1 != +int2 ? options.fn(this) : options.inverse(this);
+        },
     }
 });
 app.engine('hbs', hbs.engine);
