@@ -1,7 +1,7 @@
 /* CSS cho container ManageProduct */
 
 .container-ManageProduct {
-
+    min-height: 586px;
 }
 
 .header {
@@ -67,15 +67,15 @@ tbody tr td {
     margin: 4rem 4rem 1rem;
     justify-content: center;
 }
+
 .btn-add {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
-    left: 0;
+    margin: 16px;
 }
 
 .add-btn {
-    
+    right: 0;
     background-color: #034ea1;
     color: #fff;
     border: none;
@@ -87,23 +87,7 @@ tbody tr td {
     background-color: #7d8a9a;
 }
 
-.confirm {
-    display: flex;
-    margin: 1rem 4rem 4rem;
-    justify-content: center;
-}
 
-.confirm-btn {
-    background-color: #034ea1;
-    color: #fff;
-    border: none;
-    border-radius: 2px;
-    padding: 1.4rem;
-}
-
-.confirm-btn:hover {
-    background-color: #7d8a9a;
-}
 
 /* CSS Modal */
 
