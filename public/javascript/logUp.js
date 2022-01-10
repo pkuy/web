@@ -54,7 +54,7 @@ form.onsubmit = async(e) => {
             }
         } else {
 
-            location.assign('/home');
+            location.assign('/');
         }
 
     } catch (err) {
@@ -105,7 +105,7 @@ function checkInputs() {
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
     const small = formControl.querySelector('small');
-    formControl.className = 'form-control error';
+    formControl.className = 'form-item error';
     small.innerText = message;
 }
 
@@ -180,5 +180,5 @@ function isPhoneNumber(phone) {
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
-    formControl.className = 'form-control success';
+    formControl.className = 'form-item success';
 }

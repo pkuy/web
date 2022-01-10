@@ -9,6 +9,7 @@ html {
     font-size: 10px;
 }
 
+
 /* Section  - bestseller */
 
 .section-title {
@@ -190,6 +191,14 @@ html {
 
 .payment_option:hover {
     opacity: 0.8;
+    text-decoration: none;
+    transform: translateY(-0.2px);
+}
+
+a.payment_option:hover {
+    color: white;
+    text-decoration: none;
+    opacity: 1;
 }
 
 

@@ -10,6 +10,19 @@
         </div>
         <div class="nav__menu">
             <ul class="nav nav-pills justify-content-center">
+                {{#compareInt user.role 1}}
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/quanlisanpham">Sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/quanlidonhang">Đơn hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/quanli">Bình luận</a>
+                </li>
+                {{/compareInt }}
+
+                 {{#compareInt user.role 0}}
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="/nike">Nike</a>
                 </li>
@@ -20,6 +33,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/bitis">Bitis Hunter</a>
                 </li>
+                 {{/compareInt }}
             </ul>
         </div>
         <div class="nav__account">
@@ -32,14 +46,22 @@
                         {{user.username}}
                         </a>
                     <ul class="dropdown-menu">
+                      
+                        {{#compareString user.role 1}}
+                        <li><a class="dropdown-item" href="/taoadmin">Tạo admin mới</a></li>
+                        
+                        {{/compareString }}
+                        {{#compareString user.role 0}}
                         <li><a class="dropdown-item" href="/giohang">Giỏ hàng</a></li>
                         <li>
                             <a class="dropdown-item" href="/donhang">Đơn hàng</a>
                         </li>
+                         {{/compareString }}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="/dangxuat">Đăng xuất</a></li>
+                        
                     </ul>
                     {{else}}
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
@@ -57,5 +79,5 @@
             </ul>
         </div>
     </div>
-
 </header>
+

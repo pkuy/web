@@ -94,7 +94,7 @@ router.post('/', async(req, res) => {
             role: dataUser[0].role_id,
         };
 
-        res.locals.user = localUser;
+
         // Lưu trữ token ở cookie
         const access_token = `Beaer ${token}`;
         res.cookie('jwt', access_token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });

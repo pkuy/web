@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const { getAll, getOne, addOne } = require('../models/auth/auth.M');
 
 
-
 const authenToken = (req, res, next) => {
     const access_token = req.cookies.jwt;
     // access_token có dạng  `Beaer [token]`
@@ -80,29 +79,63 @@ const checkUserIsLogin = (req, res, next) => {
     if (!access_token) {
         next();
     } else if (access_token) {
-        res.status(401).send(
-            `<style>
-            h1{
-                text-align:center;
-            }
-            a{
-                display:block;
-                text-align:center;
-            }
-            button{
-            border:none;
-            border-radius:15px;
-            background-color:#176fd3;
-            padding: 1rem 2rem;
-            color:white;
-            font-size:1.8rem;
-            }
-            </style>
-            <h1>Bạn chưa đăng xuất</h1>
-            <a href ="/dangxuat">
-            <button> Đăng xuất </button>
-            </a>`)
+        res.redirect('/');
+
     }
 
 }
-module.exports = { authenToken, checkUserIsLogin };
+
+const checkCurrentUser = (req, res, next) => {
+    const access_token = req.cookies.jwt;
+    if (!access_token) {
+        next();
+    } else {
+        const token = access_token.split(' ')[1];
+
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+
+            res.locals.user = data;
+        });
+        next();
+    }
+
+}
+
+
+const checkRole = (req, res, next) => {
+
+
+    const access_token = req.cookies.jwt;
+    if (!access_token) {
+
+        res.redirect('/dangnhap')
+    } else {
+        const token = access_token.split(' ')[1];
+
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+
+            const roleUser = data.role;
+
+            if (roleUser != 1) {
+                // unauthorized
+                res.status(401).send(
+                    `
+                        <style> 
+                        html{
+                            text-align: center;
+                        }
+                        h1{
+                            margin-top:10rem;
+                            color:#e63946;
+                        }
+                        </style>
+                       <h1>Whoops, looks like something went wrong ! <h1>
+                    `
+                )
+            }
+        });
+
+        next();
+    }
+}
+module.exports = { authenToken, checkUserIsLogin, checkCurrentUser };

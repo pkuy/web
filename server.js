@@ -15,7 +15,7 @@ app.use(methodOverride('_method'))
 require('dotenv').config();
 
 // import authenToken 
-const { authenToken, checkUserIsLogin } = require('./middlewares/authorizacation.Mw')
+const { authenToken, checkUserIsLogin, checkCurrentUser } = require('./middlewares/authorizacation.Mw')
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -31,20 +31,31 @@ app.use(express.static(__dirname + '/public'));
 var hbs = exhbs.create({
     defaultLayout: "main",
     extname: "hbs",
+    helpers: {
+        // so sanh chuoi
+        compareString(s1, s2, options) {
+            return s1 === s2 ? options.fn(this) : options.inverse(this);
+        },
+
+        // so sanh hai so
+        compareInt(int1, int2, options) {
+            return +int1 === +int2 ? options.fn(this) : options.inverse(this);
+        },
+    }
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
 
-// kiểm tra user
-app.use('/', require("./controllers/Site/home.C"))
-    // route cho dangnhap, dangki
-//app.use('/dangnhap', checkUserIsLogin, require("./controllers/Auth/logIn.C"));
-app.use('/dangnhap', require("./controllers/Auth/logIn.C"));
 
-app.use('/dangki', require("./controllers/Auth/logUp.C"));
-//app.use('*', authenToken);
+// kiểm tra user
+app.use('/', checkCurrentUser, require("./controllers/Site/home.C"))
+    // route cho dangnhap, dangki
+app.use('/dangnhap', checkUserIsLogin, require("./controllers/Auth/logIn.C"));
+
+app.use('/dangki', checkUserIsLogin, require("./controllers/Auth/logUp.C"));
+// app.use('*', authenToken);
 
 // router danh cho homepage
 app.use('/', require("./controllers/Site/home.C"));
@@ -64,9 +75,11 @@ app.use('/bitis', require("./controllers/BrandPage/bitis.C"));
 app.use('/dangxuat', require("./controllers/Auth/logOut.C"));
 
 // route cho gio hang
-app.use('/cart', require("./controllers/Cart/cart.C"))
+app.use('/giohang', authenToken, require("./controllers/Cart/cart.C"));
 
-app.use('/order', require("./controllers/Order/order.C"))
+app.use('/donhang', authenToken, require("./controllers/Order/order.C"));
+
+app.use('*', require("./controllers/Site/whoop.C"));
 
 app.listen(port, () => {
     console.log(`Listen in port http://localhost:${port}`);

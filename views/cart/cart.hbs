@@ -162,7 +162,7 @@
         {{/if}}
       </div>
       <div class="modal-footer">
-        <form name="nextForm" action="/cart/" method="get">
+        <form name="nextForm" action="/giohang/" method="get">
             <button id="errorModalOk" type="submit" class="btn btn-success" style="font-size: 15px">
               Ok
             </button>
@@ -235,12 +235,12 @@
 
       // Nếu xóa 1 sản phẩm
       if (removeType === "one") {
-        removeForm.action = '/cart/' + s_id + '?_method=DELETE';
+        removeForm.action = '/giohang/' + s_id + '?_method=DELETE';
         return removeForm.submit();
         
       }
       // Nếu xóa cả giỏ hàng
-      removeForm.action = '/cart/?_method=DELETE';
+      removeForm.action = '/giohang/?_method=DELETE';
       removeForm.submit();
     };
     // Hết phần của remove
@@ -278,11 +278,11 @@
 
       // Nếu chọn thanh toán ngay
       if (paymentType === "now") {
-        paymentForm.action = '/order/1';
+        paymentForm.action = '/donhang/1';
         return paymentForm.submit();
       }
       // Nếu chọn đặt hàng
-      paymentForm.action = '/order/0';
+      paymentForm.action = '/donhang/0';
       return paymentForm.submit();
     };
     // Hết phần của thanh toán

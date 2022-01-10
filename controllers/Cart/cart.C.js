@@ -1,13 +1,48 @@
 const express = require("express");
 const router = express.Router();
-const { getUserById, getCartId, priceForShow, getCartContent, getCrrCartPrice,
-    addToCart, removeOneFromCart, removeAllFromCart } = require('../../models/user/cart');
+const jwt = require('jsonwebtoken');
+const {
+    getUserById,
+    getCartId,
+    priceForShow,
+    getCartContent,
+    getCrrCartPrice,
+    addToCart,
+    removeOneFromCart,
+    removeAllFromCart
+} = require('../../models/user/cart');
+
+var username = "user01";
+var role = "0";
+var idUser = '1';
+const getToken = (req, res) => {
+    const access_token = req.cookies.jwt;
+
+    if (access_token) {
+        const token = access_token.split(' ')[1];
+
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+
+            username = data.username;
+            idUser = data.id;
+            // console.log(data);
+            return username;
+        });
+    } else {
+        res.redirect('/dangnhap');
+    }
+
+}
 
 
-router.get("/", async(req,res) =>{
+
+router.get("/", async(req, res) => {
     // Tạm
-    let u_id = 3;
-    
+
+    getToken(req, res);
+    console.log(idUser);
+    let u_id = idUser;
+
     //let u_id = req.params.user_id;
     let user = await getUserById(u_id);
     let c_id = await getCartId(u_id);
@@ -37,8 +72,10 @@ router.get("/", async(req,res) =>{
 
 router.post('/:shoesid/', async(req, res) => {
     // Tạm
-    let u_id = 3;
-    
+    getToken(req, res);
+    console.log(idUser);
+    let u_id = idUser;
+
     //let u_id = req.params.user_id;
     let c_id = await getCartId(u_id);
 
@@ -46,19 +83,21 @@ router.post('/:shoesid/', async(req, res) => {
     let quantity = req.body.quantity;
 
     let addRow = await addToCart(c_id, s_id, quantity);
-    
+
     res.redirect('back');
 });
 
 router.delete('/:shoesid/', async(req, res) => {
     // Tạm
-    let u_id = 3;
-    
+    getToken(req, res);
+    console.log(idUser);
+    let u_id = idUser;
+
     //let u_id = req.params.user_id;
     let c_id = await getCartId(u_id);
 
     let s_id = req.params.shoesid;
-    
+
     let deletedRow = await removeOneFromCart(c_id, s_id);
     console.log("Đã xóa:", deletedRow);
 
@@ -67,8 +106,9 @@ router.delete('/:shoesid/', async(req, res) => {
 
 router.delete('/', async(req, res) => {
     // Tạm
-    let u_id = 3;
-    
+    getToken(req, res);
+    console.log(idUser);
+    let u_id = idUser;
     //let u_id = req.params.user_id;
     let c_id = await getCartId(u_id);
 

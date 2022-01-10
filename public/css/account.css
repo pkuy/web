@@ -84,8 +84,9 @@
 .form-item small {
     color: #e74c3c;
     position: absolute;
-    top: 7rem;
+    top: 8.4rem;
     bottom: 0;
+    margin-left: 3rem;
     left: 0;
     visibility: hidden;
 }
@@ -93,11 +94,15 @@
 .form-item.success i.fa-check-circle {
     color: #2ecc71;
     visibility: visible;
+    margin-top: 1rem;
+    margin-right: 3rem;
 }
 
 .form-item.error i.fa-exclamation-circle {
     color: #e74c3c;
     visibility: visible;
+    margin-top: 1rem;
+    margin-right: 3rem;
 }
 
 .form-item.error small {

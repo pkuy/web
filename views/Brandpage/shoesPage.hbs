@@ -68,7 +68,7 @@
           Nếu muốn, nhập số lượng cần thêm:
         </div>
         <br>
-        <form name="addToCartForm" method="post" action="/cart">
+        <form name="addToCartForm" method="post" action="/giohang">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Số lượng</label>
             <div class="col-sm-8">
@@ -125,7 +125,7 @@
           return;
       }
 
-      addToCartForm.action = '/cart/' + s_id;
+      addToCartForm.action = '/giohang/' + s_id;
       return addToCartForm.submit();
     };
   });
