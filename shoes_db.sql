@@ -104,6 +104,7 @@ create table orders (
 	user_id			serial, --Chủ hóa đơn
 	total			numeric(19, 4),
 	order_time		timestamp, --Ngày giờ tạo hóa đơn
+	order_phone     varchar(15),
 	address			varchar(70), --Địa chỉ, phục vụ cho việc giao hàng
 
 	-- Sẽ có 2 lựa chọn là "Đặt mua" \(thanh toán sau khi nhận hàng\) -> tạo hóa đơn state 0

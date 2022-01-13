@@ -32,6 +32,7 @@ const authenToken = (req, res, next) => {
         <button> Đăng nhập </button>
         </a>
         `);
+        // res.redirect('/dangnhap');
 
     }
 
@@ -79,6 +80,13 @@ const checkUserIsLogin = (req, res, next) => {
     if (!access_token) {
         next();
     } else if (access_token) {
+        // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+        //     if (err) {
+        //         res.clearCookie("jwt");
+        //     }
+
+        // });
+
         res.redirect('/');
 
     }
