@@ -23,14 +23,14 @@
             </thead>
 
             <tbody>
-                {{!-- {{#each Contents}} --}}
+                {{#each Packages}}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>tài khoản 1</td>
-                    <td>1.000.000 VNĐ</td>
-                    <td>03/01/2022</td>
-                    <td>Quảng Ngãi</td>
-                    <td>đã xác nhận</td>
+                    <th scope="row">{{this.order_id}}</th>
+                    <td>{{this.username}}</td>
+                    <td>{{this.total}}</td>
+                    <td>{{this.order_time}}</td>
+                    <td>{{this.address}}</td>
+                    <td>{{this.status}}</td>
                     <td class="edit">
 
                         <button class="edit-btn edit-order js-edit-order">
@@ -46,95 +46,7 @@
                     </td>
                 </tr>
 
-                 <tr>
-                    <th scope="row">2</th>
-                    <td>tài khoản 1</td>
-                    <td>1.000.000 VNĐ</td>
-                    <td>03/01/2022</td>
-                    <td>Quảng Ngãi</td>
-                    <td>đã xác nhận</td>
-                    <td class="edit">
-
-                        <button class="edit-btn edit-order js-edit-order">
-                            Chỉnh sửa
-                        </button> 
-
-                        <form action="" method="">
-                            <button class="edit-btn remove-order js-remove-order">
-                                Xóa
-                            </button> 
-                        </form>
-
-                    </td>
-                </tr>
-
-                 <tr>
-                    <th scope="row">3</th>
-                    <td>tài khoản 1</td>
-                    <td>1.000.000 VNĐ</td>
-                    <td>03/01/2022</td>
-                    <td>Quảng Ngãi</td>
-                    <td>đã xác nhận</td>
-                    <td class="edit">
-
-                        <button class="edit-btn edit-order js-edit-order">
-                            Chỉnh sửa
-                        </button> 
-
-                        <form action="" method="">
-                            <button class="edit-btn remove-order js-remove-order">
-                                Xóa
-                            </button> 
-                        </form>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">4</th>
-                    <td>tài khoản 2</td>
-                    <td>2.000.000 VNĐ</td>
-                    <td>03/01/2022</td>
-                    <td>Quảng Ngãi</td>
-                    <td>chưa xác nhận</td>
-                    <td class="edit">
-
-                        <button class="edit-btn edit-order js-edit-order">
-                            Chỉnh sửa
-                        </button>
-
-                        <form action="" method="">
-                            <button class="edit-btn remove-order js-remove-order">
-                                Xóa
-                            </button> 
-                        </form>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">5</th>
-                    <td>tài khoản 2</td>
-                    <td>2.000.000 VNĐ</td>
-                    <td>03/01/2022</td>
-                    <td>Quảng Ngãi</td>
-                    <td>chưa xác nhận</td>
-                    <td class="edit">
-
-                        <button class="edit-btn edit-order js-edit-order">
-                            Chỉnh sửa
-                        </button> 
-
-                        <form action="" method="">
-                            <button class="edit-btn remove-order js-remove-order">
-                                Xóa
-                            </button> 
-                        </form>
-
-                    </td>
-                </tr>
-
-                {{!-- {{/each}} --}}
+                {{/each}}
             </tbody>
 
         </table>

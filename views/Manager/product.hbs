@@ -11,7 +11,6 @@
                 <tr>
                     <th scope="col">Mã giày</th>
                     <th scope="col">Tên giày</th>
-                    <th scope="col">Hình ảnh</th>
                     <th scope="col">Thương hiệu</th>
                     <th scope="col">Kích thước</th>
                     <th scope="col">Giá tiền</th>
@@ -21,17 +20,14 @@
             </thead>
 
             <tbody>
-                {{!-- {{#each Contents}} --}}
+                {{#each Packages}}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Nike 1</td>
-                    <td>
-                        <img src="" alt="">
-                    </td>
-                    <td>Nike</td>
-                    <td>42</td>
-                    <td>1.000.000 VNĐ</td>
-                    <td>90</td>
+                    <th scope="row">{{this.shoes_id}}</th>
+                    <td>{{this.shoes_name}}</td>
+                    <td>{{this.brand_id}}</td>
+                    <td>{{this.size}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.stock}}</td>
                     <td class="edit">
 
                         <button class="edit-btn edit-product js-edit-product ">
@@ -47,44 +43,32 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Nike 2</td>
-                    <td>
-                        <img src="" alt="">
-                    </td>
-                    <td>Nike</td>
-                    <td>43</td>
-                    <td>1.000.000 VNĐ</td>
-                    <td>99</td>
-                    <td class="edit">
+               
 
-                        <button class="edit-btn edit-product js-edit-product">
-                            Chỉnh sửa
-                        </button>
-
-                        <form action="" method="">
-                            <button class="edit-btn remove-product js-remove-product">
-                                Xóa
-                            </button> 
-                        </form>
-
-                    </td>
-                </tr>
-
-                {{!-- {{/each}} --}}
+                {{/each}}
             </tbody>
 
         </table>
-
+    
     </div>
 
-     <div class="btn-add ">
-        <button class="add-btn js-add-btn btn3">
+     <div class="btn-add">
+        <button class="add-btn js-add-btn">
         Thêm sản phẩm mới
         </button>
     </div>
 
+    <div class="Page example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item ">
+                <a class="page-link" href="/quanlisanpham?page={{this.PreviousPage}}">Trước</a>
+            </li>
+            <li class="page-item"><a class="page-link">{{this.page}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href="/quanlisanpham?page={{this.NextPage}}">Tiếp theo</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 
