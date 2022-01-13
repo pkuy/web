@@ -1,100 +1,60 @@
-<div class="container-ManageOrder">
+<div class="container-cart">
 
-    <div class="header">
-        <h2 class="header__title">Quản lý đơn hàng</h2>
+    <div class="title section-title">
+        <h3 class="section-bestseller title secondary-title">QUẢN LÝ ĐƠN HÀNG</h3>
     </div>
 
-    <div class="table">
-
-        <table class="table__content">
-
-            <thead class="table__content-thead">
-
+    <div class="content-table table-hover">
+        <table class="table">
+            <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Mã đơn hàng</th>
-                    <th scope="col">Tài khoản đặt hàng</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Tổng tiền</th>
-                    <th scope="col">Thời gian tạo hóa đơn</th>
-                    <th scope="col">Địa chỉ giao hàng</th>
-                    <th scope="col">Tình trạng đơn hàng</th>
-                    <th scope="col">Chỉnh sửa đơn hàng</th>
+                    <th scope="col">Thời gian</th>
+                    <th scope="col">SĐT</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Trạng thái</th>
+                    <th></th>
+                    <th></th>
                 </tr>
-
             </thead>
 
             <tbody>
-                {{#each Packages}}
-                <tr>
+                {{#each Orders}}
+                <tr >
                     <th scope="row">{{this.order_id}}</th>
-                    <td>{{this.username}}</td>
                     <td>{{this.total}}</td>
                     <td>{{this.order_time}}</td>
+                    <td>{{this.order_phone}}</td>
                     <td>{{this.address}}</td>
                     <td>{{this.status}}</td>
-                    <td class="edit">
-
-                        <button class="edit-btn edit-order js-edit-order">
-                            Chỉnh sửa
-                        </button> 
-
-                        <form action="" method="">
-                            <button class="edit-btn remove-order js-remove-order">
-                                Xóa
-                            </button> 
-                        </form>
-
+                    <td>
+                        <a href="/quanlidonhang/order/{{this.order_id}}/detail"  class="payment_option order_detail" style="padding: 5px; font-size:15px">
+                            Chi tiết
+                        </a>
+                    </td>
+                    <td>
+                        <a href="" class="payment_option order_detail" style="padding: 5px; font-size:15px">
+                            Xóa
+                        </a>
                     </td>
                 </tr>
-
                 {{/each}}
             </tbody>
-
         </table>
 
     </div>
 
-    <tfoot>
-        <form class="confirm" action="" method="">
-            <button class="confirm-btn">
-                Xác nhận chỉnh sửa
-            </button>
-        </form>
-    </tfoot>
-
-</div>
-
-
-
-<div class="modal js-modal">
-    
-    <div class="modal-overlay js-modal-overlay">
-
-        <div class="modal-content">
-            <div class="modal__header">
-                <h3>Nhập trạng thái đơn hàng</h3>
-                <div class="btn">
-                    <button class="exit-btn js-exit-btn"> x </button>
-                </div>
-                
-
-            </div>
-
-            <div class="modal__form-edit">
-                <form action="" method="" class="form-edit">
-                    Tình trạng đơn hàng 
-                    <input type="text" class="form-input" placeholder="...">
-                </form>
-            </div>  
-
-        </div>
-        <div class="modal-btn">
-            <form action="" method="">
-                <button class="modal__confirm js-modal__confirm">Xác nhận</button>
-            </form>
-            
-        </div>
-        
-
+    <div class="Page example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item ">
+                <a class="page-link" href="/quanlidonhang?page={{this.PreviousPage}}">Trước</a>
+            </li>
+            <li class="page-item"><a class="page-link">{{this.page}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href="/quanlidonhang?page={{this.NextPage}}">Tiếp theo</a>
+            </li>
+        </ul>
     </div>
 
 </div>

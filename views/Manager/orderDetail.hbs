@@ -1,0 +1,40 @@
+<div class="container-cart">
+
+    <div class="title section-title">
+        <h3 class="section-bestseller title secondary-title">CHI TIẾT HÓA ĐƠN</h3>
+    </div>
+
+    <div class="content-table table-hover">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Giá / 1 sản phẩm</th>
+                    <th scope="col">Số lượng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each Packages}}
+                <tr >
+                    <th scope="row">{{this.shoes_name}}</th>
+                    <td>{{this.size}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.quantity}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <td>Tổng giá tiền:</td>
+                <td>
+                  {{Order.total}}
+                </td>
+              </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>

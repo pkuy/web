@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getAllProducts} = require("../../models/owner/products.M.js");
+const {getAllProducts,priceForShow} = require("../../models/owner/products.M.js");
 
 router.get("/", async(req,res) =>{
     
@@ -23,6 +23,21 @@ router.get("/", async(req,res) =>{
 
     let pds = await (await getAllProducts()).slice(start, end);
     //let pds = await getAllProducts()
+
+    // Thay đổi thông tin để hiển thị
+    for (let pd of pds) {
+
+        pd.price = priceForShow(pd.price);
+
+        if (pd.brand_id == 1) {
+            pd.brand_id ="Nike"
+        } else if (pd.brand_id == 2) {
+            pd.brand_id = "Adidas"
+        } else {
+            pd.brand_id = "Bitis"
+        }
+    }
+
     res.render('Manager/product', {
         title: 'Quản lý sản phẩm',
         cssP: () => 'OwnerProduct/cssProduct',
