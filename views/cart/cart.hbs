@@ -259,7 +259,12 @@
       if (paymentType === "now") {
         $('#paymentModalHead').text("Thanh toán ngay");
         $('#paymentModalMsg').text(`Vui lòng nhập thông tin tài khoản ngân hàng thanh toán`);
-        $('#additionalDetail').html(``);
+        $('#additionalDetail').html(`<div class="form-group row">
+              <label class="col-sm-2 col-form-label">Địa chỉ</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" require name="o_address" style="font-size: 15px;">
+              </div>
+            </div>`);
       }
       else {
         $('#paymentModalHead').text("Đặt hàng");

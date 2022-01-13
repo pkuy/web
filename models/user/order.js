@@ -70,7 +70,6 @@ exports.createOrder = async(c_id, o_phone, o_address, type) => {
     }
 
     // Tạo hóa đơn
-    
     let u_id = await this.getUserIdByCartId(c_id);
     let orderPrice = await getCrrCartPrice(c_id);
     if (!o_address) {

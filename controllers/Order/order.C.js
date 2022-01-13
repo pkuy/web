@@ -54,18 +54,18 @@ router.post("/:type", async(req, res) => {
     let o_address = req.body.o_address;
 
     //Nếu thiếu thông tin thanh toán/đặt hàng
-    if (!o_phone || (p_type == 0 && !o_address)) {
+    if (!o_phone || !o_address) {
         let createRes;
         let errorFields = [];
         if (!o_phone) {
             errorFields.push({ shoes_name: "Sđt" });
         }
+        if (!o_address) {
+            errorFields.push({ shoes_name: "Địa chỉ" });
+        }
         if (p_type == 0) {
-            if (!o_address) {
-                errorFields.push({ shoes_name: "Địa chỉ" });
-            }
             createRes = {
-                state: -1, // đặt hàng thất bại
+                state: -1, // Đặt hàng thất bại
                 msg: "  Vui lòng điền đầy đủ các thông tin sau:",
                 eProduct: errorFields,
             }

@@ -3,7 +3,8 @@ const pool = new Pool({
     user: "postgres",
     host: "localhost",
     database: "shoes_db",
-    password: "19120649",
+    // Sửa pass theo máy của mình
+    password: "331656",
     port: 5432,
 });
 

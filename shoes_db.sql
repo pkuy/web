@@ -104,6 +104,7 @@ create table orders (
 	user_id			serial, --Chủ hóa đơn
 	total			numeric(19, 4),
 	order_time		timestamp, --Ngày giờ tạo hóa đơn
+	order_phone		varchar(15), --Sđt, phục vụ cho việc giao hàng
 	address			varchar(70), --Địa chỉ, phục vụ cho việc giao hàng
 
 	-- Sẽ có 2 lựa chọn là "Đặt mua" \(thanh toán sau khi nhận hàng\) -> tạo hóa đơn state 0
@@ -148,7 +149,7 @@ create table order_content (
 -- Thêm hãng giày mẫu
 insert into brands values (1, 'Nike'), (2, 'Adidas'), (3, 'Bitis');
 
-
+/*
 -- Thêm user mẫu
 insert into users values
 (1, 'owner01', 'Phạm Ngọc Truyền', '0123456789', '$2b$10$Vkhen5eBmVHW7KlxsemqO.tiAzjyE1poZugSaqWTJTC7OQJMn72QS', 1),
@@ -159,7 +160,7 @@ insert into users values
 
 -- Thêm shopping cart mẫu ứng với 2 customer mẫu
 insert into carts values (1, 3), (2, 4);
-
+*/
 
 -- Thêm giày mẫu
 insert into shoes values
