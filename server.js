@@ -67,7 +67,7 @@ app.use('/', require("./controllers/Site/home.C"));
 app.use('/shoes', require("./controllers/Detail/shoes.C"));
 
 // route cho chi tiết đơn hàng
-app.use('/quanlidonhang/order', require("./controllers/Owner/orderDetail.C"));
+app.use('/orderDetail', require("./controllers/Owner/orderDetail.C"));
 
 // route cho adidas
 app.use('/adidas', require("./controllers/BrandPage/adidas.C"));
