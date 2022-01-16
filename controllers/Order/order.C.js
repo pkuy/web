@@ -102,7 +102,7 @@ router.post("/:type", async(req, res) => {
     // Tạo háo đơn
     let createRes = await createOrder(c_id, o_phone, o_address, p_type);
 
-    // Cập nhật lại giỏ hàng sau khi tọa hóa đơn
+    // Cập nhật lại giỏ hàng sau khi tạo hóa đơn
     let c_content = await getCartContent(c_id);
     let c_price = await getCrrCartPrice(c_id);
 

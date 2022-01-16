@@ -75,7 +75,8 @@ exports.createOrder = async(c_id, o_phone, o_address, type) => {
     if (!o_address) {
         o_address = "Không";
     }
-    let newOrder = await db.query(`insert into orders("user_id", "total", "order_time", "order_phone" , "address", "status") values (${u_id}, ${orderPrice}, Now(), '${o_phone}', '${o_address}', ${type}) returning *;`);
+    let newOrder = await db.query(`insert into orders("user_id", "total", "order_time", "order_phone" , "address", "status")
+    values (${u_id}, ${orderPrice}, Now(), '${o_phone}', '${o_address}', ${type}) returning *;`);
     newOrder = newOrder.rows[0];
     
     let orderId = newOrder.order_id;

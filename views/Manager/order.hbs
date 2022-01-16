@@ -14,8 +14,7 @@
                     <th scope="col">SĐT</th>
                     <th scope="col">Địa chỉ</th>
                     <th scope="col">Trạng thái</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Chỉnh sửa</th>
                 </tr>
             </thead>
 
@@ -28,14 +27,15 @@
                     <td>{{this.order_phone}}</td>
                     <td>{{this.address}}</td>
                     <td>{{this.status}}</td>
-                    <td>
+                    <td class="edit">
                         <a href="/orderDetail/{{this.order_id}}/detail"  class="payment_option order_detail" style="padding: 5px; font-size:15px">
                             Chi tiết
                         </a>
-                    </td>
-                    <td>
                         <a href="" class="payment_option order_detail" style="padding: 5px; font-size:15px">
-                            Xóa
+                            Sửa
+                        </a>
+                        <a href="" class="payment_option order_detail" style="padding: 5px; font-size:15px">
+                            Hủy
                         </a>
                     </td>
                 </tr>

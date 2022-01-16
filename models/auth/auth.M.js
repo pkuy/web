@@ -19,7 +19,7 @@ const addOne = async function(username, fullName, phoneNumber, password) {
     const user = await pool.query(
         `INSERT INTO ${tableName}
      ("username", "fullname", "phone", "pwd", "role_id")
-      VALUES ('${username}', '${fullName}','${phoneNumber}', '${password}',1)
+      VALUES ('${username}', '${fullName}','${phoneNumber}', '${password}',0)
       Returning *`);
 
     return user.rows;
